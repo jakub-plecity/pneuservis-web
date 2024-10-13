@@ -1,28 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pneuservis Pro | Home</title>
+  <title></title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    function loadProperties(locale) {
+      fetch(`messages_${locale}.properties`)
+              .then(response => response.text())
+              .then(data => {
+                const properties = parseProperties(data);
+                document.getElementById('nav-home').textContent = properties['nav.home'];
+                document.getElementById('nav-services').textContent = properties['nav.services'];
+                document.getElementById('nav-about').textContent = properties['nav.about'];
+                document.getElementById('nav-contact').textContent = properties['nav.contact'];
+                document.getElementById('hero-title').textContent = properties['hero.title'];
+                document.getElementById('hero-description').textContent = properties['hero.description'];
+                document.getElementById('hero-cta').textContent = properties['hero.cta'];
+              });
+    }
+
+    function parseProperties(data) {
+      const result = {};
+      const lines = data.split('\n');
+      lines.forEach(line => {
+        const [key, value] = line.split('=');
+        if (key && value) {
+          result[key.trim()] = value.trim();
+        }
+      });
+      return result;
+    }
+
+    // Load default locale (English)
+    window.onload = () => loadProperties('cs');
+  </script>
 </head>
 <body>
 <!-- Header Section -->
 <header>
   <div class="container">
-    <div class="logo">
-      <h1>Pneuservis Pro</h1>
+    <div class="header-content">
+      <div class="logo">
+        <h1>Pneuservis Pro</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <!-- Language Switcher with Flags -->
+      <div class="language-switcher">
+        <button onclick="loadProperties('en')">
+          <img src="img/flag-en.png" alt="English" title="English" width="24" height="16">
+        </button>
+        <button onclick="loadProperties('cs')">
+          <img src="img/flag-cz.png" alt="Czech" title="Czech" width="24" height="16">
+        </button>
+      </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </nav>
   </div>
 </header>
 

@@ -13,6 +13,13 @@ body {
   margin: 0 auto;
 }
 
+/* Flexbox for header content: logo, nav, and language switcher */
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Space between the navigation and language switcher */
+  align-items: center;
+}
+
 /* Header */
 header {
   position: fixed;       /* Fixes the header to the top of the viewport */
@@ -30,6 +37,7 @@ header .logo h1 {
   font-size: 24px;
 }
 
+/* Navigation Menu Styling */
 nav ul {
   list-style: none;
   display: flex;
@@ -37,7 +45,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
   font-weight: 500;
 }
@@ -181,6 +189,25 @@ footer ul li a {
 footer ul li a:hover {
   text-decoration: underline;
 }
+/* Language Switcher Styling */
+.language-switcher {
+  display: flex;
+  gap: 10px; /* Space between the flag buttons */
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.language-switcher img {
+  width: 24px;
+  height: auto;
+  display: block;
+}
+
 
 /* Responsive Styling */
 @media (max-width: 768px) {
